@@ -22,7 +22,10 @@ def generate_yaml(in_file):
 
     # Execute param file in mocked environment
     global_vars = {"__file__": in_file, 'ParameterGenerator': YamlGenerator}
-    return execfile(in_file, global_vars)
+    with open(in_file) as f:
+        code = compile(f.read(), in_file, 'exec')
+        result = exec(code, global_vars)
+    return result
 
 
 if __name__ == "__main__":
