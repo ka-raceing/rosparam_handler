@@ -48,7 +48,7 @@ macro(generate_ros_parameter_files)
 
             add_custom_command(OUTPUT
                     ${_output_cpp} ${_output_cfg} ${_output_py}
-                    COMMAND ${_cmd}
+                    COMMAND cmake -E env PYTHONPATH=$ENV{PYTHONPATH}:${ROSPARAM_HANDLER_ROOT_DIR}/src ${_cmd}
                     DEPENDS ${_input} ${genparam_build_files}
                     COMMENT "Generating parameter files from ${_cfgonly}"
                     )
